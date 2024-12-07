@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ง้อแฟน</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      text-align: center;
+      background-color: #ffe6e6;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn--yes {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn--yes:hover {
+      background: #45a049;
+    }
+
+    .image-container img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .caption {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .buttons button {
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .buttons .btn-sorry {
+      background: #4CAF50;
+      /* สีเขียวสำหรับหายงอน */
+    }
+
+    .buttons .btn-sorry:hover {
+      background: #45a049;
+    }
+
+    .buttons .btn-angry {
+      background: #f44336;
+      /* สีแดงสำหรับงอนอยู่ */
+    }
+
+    .buttons .btn-angry:hover {
+      background: #e53935;
+    }
+
+    .next-button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    .next-button:hover {
+      background: #0056b3;
+    }
+
+    button {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e53935;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img id="display-image" src="../static/img/cat-0.jpg" alt="รูปภาพ">
+      <p id="image-caption" class="caption">ดีกันนะค้าบเบบี๋</p>
+    </div>
+    <button class="next-button" id="next-button" onclick="showNextImage()">ถัดไป</button>
+    <div class="buttons" id="action-buttons">
+      <button class="btn-sorry" onclick="saySorry()">หายงอน</button>
+      <button class="btn-angry" onclick="sayAngry()">งอนอยู่</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
+  <script>
+
+    const images = [
+      { src: "../static/img/cat-0.jpg", caption: "ดีกันนะค้าบเบบี๋" },
+      { src: "../static/img/cat-2.jpg", caption: "เค้าผิดไปแล้วว" },
+      { src: "../static/img/cat-5.jpg", caption: "เค้าจะไม่ทำอีกแล้วววเค้าขอโทษ" }
+    ];
+
+    let currentIndex = 0;
+
+    function showNextImage() {
+      currentIndex++;
+      if (currentIndex < images.length) {
+
+        document.getElementById("display-image").src = images[currentIndex].src;
+        document.getElementById("image-caption").textContent = images[currentIndex].caption;
+      } else {
+        document.getElementById("next-button").style.display = "none";
+        document.getElementById("action-buttons").style.display = "block";
+      }
+    }
+
+    function saySorry() {
+      Swal.fire(
+        'น่ารักที่สุดดด',
+        'ขอโทษนะครับที่ทำให้งอนแต่เค้าก็รักเธอมากๆเลยนะ',
+        'success' // สีเขียวสำหรับหายงอน
+      );
+    }
+
+    function sayAngry() {
+      Swal.fire(
+        'กูว่าและ',
+        'ว่าแหละต้องไม่หายงอน ต่อไปไม่ง้อละดื้อก็ดื้อเชอะ💖🐷',
+        'error' // สีแดงสำหรับงอนอยู่
+      );
+    }
+  </script>
+</body>
+
+</html>
